@@ -1,0 +1,62 @@
+  private ViewGroup bookingViewGroup;
+   public static AlertDialog bookingPinDialog;
+ 
+ private void bottomDialog(String selectedTimeStr) {
+        View bookingDialogView = LayoutInflater.from(context).inflate(R.card_array_adapter_bottom_popup, bookingViewGroup, false);
+        Button dialogCancelBtn = (Button) bookingDialogView.findViewById(R.id.dialog_cancel_btn);
+       
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.bottomPopupDialog);
+        builder.setView(bookingDialogView);
+        bookingPinDialog = builder.create();
+        bookingPinDialog.setCanceledOnTouchOutside(false);
+        bookingPinDialog.getWindow().setGravity(Gravity.BOTTOM);
+        // pinDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        bookingPinDialog.show();
+
+        dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bookingPinDialog.dismiss();
+            }
+        });
+    }
+    
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_up</item>
+    </style>
+    <style name="bottomPopupDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bottom_popup_dialog</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+    
+    Slide_in_up(anim file)
+    ======================
+    <?xml version="1.0" encoding="utf-8"?>
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromYDelta="100%p" android:toYDelta="0%p"
+    android:duration="@android:integer/config_shortAnimTime"/>
+    
+    Slide_out_up(anim file)
+    ======================
+    <?xml version="1.0" encoding="utf-8"?>
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromYDelta="0%p" android:toYDelta="100%p"
+    android:duration="@android:integer/config_shortAnimTime"/>
+    
+    card_array_adapter_bottom_popup
+    ===============================
+    <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:background="@null"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+  <write your content>
+</LinearLayout>
+    
